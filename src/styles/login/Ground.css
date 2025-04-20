@@ -1,0 +1,74 @@
+/* Ground with grass */
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 25%;
+  background-color: #4CAF50; /* Green field background */
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Multiple grass images across the field */
+.grass-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  z-index: 2;
+}
+
+.grass-patch {
+  position: relative;
+  height: 100px;
+  width: 150px;
+  background-image: url('/images/grass.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  margin-right: -30px; /* Overlap more */
+  margin-bottom: -20px;
+}
+
+/* Create staggered rows of grass */
+.grass-row {
+  display: flex;
+  width: 100%;
+  position: absolute;
+}
+
+.grass-row:nth-child(1) {
+  bottom: 0;
+  left: -20px;
+}
+
+.grass-row:nth-child(2) {
+  bottom: 50px;
+  left: 30px;
+}
+
+.grass-patch:nth-child(odd) {
+  height: 90px;
+  transform: scaleX(-1); /* Flip some patches for variety */
+}
+
+.grass-patch:nth-child(3n) {
+  height: 110px;
+  filter: brightness(1.1);
+}
+
+.grass-patch:nth-child(4n) {
+  height: 85px;
+  filter: brightness(0.9);
+}
+
+.grass-patch:nth-child(5n) {
+  transform: scaleX(-1) scaleY(0.9);
+}
+
+/* Remove the old grass elements since we're using an image now */

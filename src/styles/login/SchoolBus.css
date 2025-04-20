@@ -1,0 +1,57 @@
+/* School Bus Animation */
+.school-bus {
+  position: absolute;
+  bottom: 25%;
+  left: -250px; /* Start off-screen */
+  width: 200px;
+  height: 100px;
+  z-index: 3;
+  background-image: url('/images/Subject copy.PNG');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: busDrive 10s linear infinite;
+}
+
+@keyframes busDrive {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(100px) translateY(-2px);
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(200px) translateY(2px);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(300px) translateY(-2px);
+    opacity: 1;
+  }
+  40% {
+    transform: translateX(400px) translateY(2px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(500px) translateY(-2px);
+    opacity: 1;
+  }
+  60% {
+    transform: translateX(600px) translateY(2px);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(800px) translateY(-2px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(1000px) translateY(2px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(1200px) translateY(0);
+    opacity: 0;
+  }
+} 

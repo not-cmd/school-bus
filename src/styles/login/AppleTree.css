@@ -1,0 +1,27 @@
+/* Apple Tree */
+.tree {
+  position: absolute;
+  bottom: 25%;
+  left: 15%; /* This will be overridden by inline style */
+  z-index: 2; /* This will be overridden by inline style */
+  width: 250px;
+  height: 300px;
+  background-image: url('/images/beautiful-single-big-tree-illustration-vector.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  animation: sway 5s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+/* Keeping the sway animation */
+@keyframes sway {
+  0% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(2deg);
+  }
+}
+
+/* Remove the old tree elements that are no longer needed */

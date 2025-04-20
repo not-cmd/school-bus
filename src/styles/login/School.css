@@ -1,0 +1,28 @@
+/* School Building */
+.school-building {
+  position: absolute;
+  bottom: 25%;
+  right: 15%; /* This will be overridden by inline style */
+  width: 250px;
+  height: 200px;
+  background-image: url('/Users/divyeshmedidi/Desktop/guardian-track-connect-39-main/Subject.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2; /* This will be overridden by inline style */
+  /* Add a small animation to make it stand out */
+  animation: schoolPulse 5s infinite alternate;
+}
+
+@keyframes schoolPulse {
+  0% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+  }
+  100% {
+    transform: translateY(-5px) scale(1.02);
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.4));
+  }
+}
+
+/* Remove the old school building elements since we're using an image now */

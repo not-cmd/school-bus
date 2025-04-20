@@ -1,0 +1,16 @@
+/* We're going to replace the App.css content to avoid conflicts */
+/* The styling is now modular and mostly in Tailwind classes */
+
+/* Only keeping basic container styles that might be useful elsewhere */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
