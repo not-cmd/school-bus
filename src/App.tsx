@@ -8,6 +8,7 @@ import Index from "@/pages/Index";
 import Attendance from "@/pages/Attendance";
 import LiveFeed from "@/pages/LiveFeed";
 import GPS from "@/pages/GPS";
+import Chat from "@/pages/Chat";
 import NotFound from "@/pages/NotFound";
 import { useState } from "react";
 
@@ -61,6 +62,10 @@ const App = () => {
             <Route 
               path="/gps" 
               element={isAuthenticated ? <GPS /> : <Navigate to="/login" />} 
+            />
+            <Route 
+              path="/chat" 
+              element={isAuthenticated ? <Chat /> : <Navigate to="/login" />} 
             />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

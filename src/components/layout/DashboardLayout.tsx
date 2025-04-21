@@ -40,7 +40,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   ];
   
   return (
-    <div className="flex min-h-screen bg-guardian-background flex-col">
+    <div className="flex min-h-screen bg-[#F3F4F6] flex-col">
       <div className="flex flex-1">
         {/* Sidebar */}
         <aside 
@@ -49,14 +49,14 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
             isSidebarOpen ? "w-64" : "w-16"
           )}
         >
-          <div className="flex items-center justify-between p-4 border-b">
+          <div className="flex items-center justify-between p-4 border-b border-[#E5E7EB]">
             <div className={cn("flex items-center gap-2", !isSidebarOpen && "hidden")}>
               <img 
                 src="/guardiantrack.png" 
                 alt="GuardianTrack Logo" 
                 className="w-8 h-8" 
               />
-              <span className="text-lg font-bold text-[#7A8D9B]">GuardianTrack</span>
+              <span className="text-lg font-bold text-[#0056B6]">GuardianTrack</span>
             </div>
             {!isSidebarOpen && (
               <img 
@@ -67,9 +67,9 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
             )}
             <button 
               onClick={toggleSidebar} 
-              className="p-1 rounded-full hover:bg-gray-100"
+              className="p-1 rounded-full hover:bg-[#F3F4F6]"
             >
-              {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
+              {isSidebarOpen ? <X size={20} className="text-[#6B7280]" /> : <Menu size={20} className="text-[#6B7280]" />}
             </button>
           </div>
           
@@ -79,12 +79,12 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                 <NavigationMenuItem key={item.label} className="w-full">
                   <Link to={item.href} className="w-full">
                     <div className={cn(
-                      "flex items-center px-4 py-2 cursor-pointer rounded-md hover:bg-[#E3D4D0]/30",
-                      "hover:text-[#7A8D9B] font-inter transition-all duration-200",
-                      item.href === '/' && "bg-[#E3D4D0]/30 text-[#7A8D9B] font-medium"
+                      "flex items-center px-4 py-2 cursor-pointer rounded-md hover:bg-[#F3F4F6]",
+                      "hover:text-[#0056B6] font-inter transition-all duration-200",
+                      window.location.pathname === item.href && "bg-[#0056B6]/10 text-[#0056B6] font-medium"
                     )}>
-                      <item.icon size={20} className="text-[#7A8D9B]" />
-                      {isSidebarOpen && <span className="ml-3 text-[#7A8D9B]">{item.label}</span>}
+                      <item.icon size={20} className={window.location.pathname === item.href ? "text-[#0056B6]" : "text-[#6B7280]"} />
+                      {isSidebarOpen && <span className={cn("ml-3", window.location.pathname === item.href ? "text-[#0056B6]" : "text-[#6B7280]")}>{item.label}</span>}
                     </div>
                   </Link>
                 </NavigationMenuItem>
@@ -93,11 +93,11 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
           </NavigationMenu>
 
           {/* Logout Button at the bottom */}
-          <div className="mt-auto border-t p-4">
+          <div className="mt-auto border-t border-[#E5E7EB] p-4">
             <button 
               onClick={handleLogout}
               className={cn(
-                "w-full flex items-center px-4 py-2 rounded-md text-red-500 hover:bg-red-50",
+                "w-full flex items-center px-4 py-2 rounded-md text-[#EF4444] hover:bg-[#EF4444]/10",
                 "transition-all duration-200"
               )}
             >
@@ -113,19 +113,19 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
           isSidebarOpen ? "ml-64" : "ml-16"
         )}>
           {/* Top Navigation Bar */}
-          <header className="sticky top-0 z-10 bg-white shadow-sm">
+          <header className="sticky top-0 z-10 bg-white shadow-sm border-b border-[#E5E7EB]">
             <div className="flex items-center justify-between px-4 py-2">
-              <h2 className="text-xl font-semibold font-poppins text-[#7A8D9B]">Dashboard</h2>
+              <h2 className="text-xl font-semibold font-poppins text-[#111827]">Dashboard</h2>
               <div className="flex items-center space-x-4">
-                <button className="relative p-2 rounded-full hover:bg-gray-100">
-                  <Bell size={20} className="text-[#7A8D9B]" />
-                  <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                <button className="relative p-2 rounded-full hover:bg-[#F3F4F6]">
+                  <Bell size={20} className="text-[#6B7280]" />
+                  <span className="absolute top-1 right-1 w-2 h-2 bg-[#EF4444] rounded-full"></span>
                 </button>
                 <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-[#DABEB6] rounded-full flex items-center justify-center text-white font-medium">
+                  <div className="w-8 h-8 bg-[#0056B6] rounded-full flex items-center justify-center text-white font-medium">
                     D
                   </div>
-                  <span className="hidden md:block font-inter text-[#7A8D9B]">Divyesh's Parent</span>
+                  <span className="hidden md:block font-inter text-[#6B7280]">Divyesh's Parent</span>
                 </div>
               </div>
             </div>

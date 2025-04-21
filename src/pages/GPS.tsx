@@ -124,32 +124,42 @@ const GPS = () => {
 
   return (
     <DashboardLayout>
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 py-6 bg-[#F3F4F6]">
         <div className="flex flex-col md:flex-row justify-between items-start mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-[#7A8D9B]">GPS & Trip Analytics</h1>
-            <p className="text-[#7A8D9B]/70 mt-1">Parent View - Track your child's bus in real-time</p>
+            <h1 className="text-3xl font-bold text-[#111827]">GPS & Trip Analytics</h1>
+            <p className="text-[#6B7280] mt-1">Parent View - Track your child's bus in real-time</p>
           </div>
-          <Badge variant="outline" className="mt-2 md:mt-0 bg-[#E3D4D0]/20 border-[#DABEB6]/30 text-[#7A8D9B]">
+          <Badge variant="outline" className="mt-2 md:mt-0 bg-[#FFC107]/10 border-[#FFC107] text-[#0056B6]">
             <Clock className="mr-1 h-3 w-3" /> Live Updates
           </Badge>
         </div>
 
         <Tabs defaultValue="map" className="w-full" onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-2 bg-[#E3D4D0]/10 backdrop-blur-lg border border-[#DABEB6]/20 rounded-lg mb-6">
-            <TabsTrigger value="map" className="text-[#7A8D9B] data-[state=active]:bg-[#E3D4D0]/30 data-[state=active]:text-[#7A8D9B]">Live Map</TabsTrigger>
-            <TabsTrigger value="history" className="text-[#7A8D9B] data-[state=active]:bg-[#E3D4D0]/30 data-[state=active]:text-[#7A8D9B]">Trip History</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 bg-white/50 backdrop-blur-lg border border-[#E5E7EB] rounded-lg mb-6">
+            <TabsTrigger 
+              value="map" 
+              className="text-[#6B7280] data-[state=active]:bg-[#0056B6] data-[state=active]:text-white"
+            >
+              Live Map
+            </TabsTrigger>
+            <TabsTrigger 
+              value="history" 
+              className="text-[#6B7280] data-[state=active]:bg-[#0056B6] data-[state=active]:text-white"
+            >
+              Trip History
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="map" className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
               <Card 
                 ref={mapCardRef}
-                className={`md:col-span-2 bg-white/10 backdrop-blur-xl shadow-lg border border-[#DABEB6]/20 ${isFullScreen ? 'w-full h-full' : ''}`}
+                className={`md:col-span-2 bg-white/85 backdrop-blur-xl shadow-lg border border-[#E5E7EB] ${isFullScreen ? 'w-full h-full' : ''}`}
               >
                 <CardHeader className="flex flex-row items-center justify-between">
-                  <CardTitle className="flex items-center text-[#7A8D9B]">
-                    <MapPin className="mr-2 h-5 w-5 text-[#DABEB6]" />
+                  <CardTitle className="flex items-center text-[#111827]">
+                    <MapPin className="mr-2 h-5 w-5 text-[#0056B6]" />
                     Live Bus Location
                   </CardTitle>
                   <Button 
@@ -158,7 +168,7 @@ const GPS = () => {
                     onClick={toggleFullScreen}
                     data-component-name="Button"
                     data-component-content="%7B%22className%22%3A%22w-full%20h-full%22%7D"
-                    className="rounded-full h-8 w-8 p-0 text-[#7A8D9B] hover:bg-[#E3D4D0]/20"
+                    className="rounded-full h-8 w-8 p-0 text-[#0056B6] hover:bg-[#0056B6]/10"
                   >
                     {isFullScreen ? (
                       <Minimize className="h-4 w-4" />
@@ -181,40 +191,40 @@ const GPS = () => {
                 </CardContent>
               </Card>
 
-              <Card className={`bg-white/10 backdrop-blur-xl shadow-lg border border-[#DABEB6]/20 ${isFullScreen ? 'hidden' : ''}`}>
+              <Card className={`bg-white/85 backdrop-blur-xl shadow-lg border border-[#E5E7EB] ${isFullScreen ? 'hidden' : ''}`}>
                 <CardHeader>
-                  <CardTitle className="text-[#7A8D9B]">Trip Information</CardTitle>
+                  <CardTitle className="text-[#111827]">Trip Information</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="p-4 rounded-lg bg-[#E3D4D0]/10 border border-[#DABEB6]/20">
-                      <h3 className="text-sm font-medium text-[#7A8D9B] mb-1">Current Address</h3>
-                      <p className="text-[#7A8D9B] flex items-center">
-                        <MapPin className="mr-2 h-4 w-4 text-[#DABEB6]" />
+                    <div className="p-4 rounded-lg bg-[#F3F4F6] border border-[#E5E7EB]">
+                      <h3 className="text-sm font-medium text-[#6B7280] mb-1">Current Address</h3>
+                      <p className="text-[#111827] flex items-center">
+                        <MapPin className="mr-2 h-4 w-4 text-[#0056B6]" />
                         {currentBusData.address}
                       </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="p-4 rounded-lg bg-[#E3D4D0]/10 border border-[#DABEB6]/20">
-                        <h3 className="text-sm font-medium text-[#7A8D9B] mb-1">ETA</h3>
-                        <p className="text-[#7A8D9B] flex items-center">
-                          <Clock className="mr-2 h-4 w-4 text-[#DABEB6]" />
+                      <div className="p-4 rounded-lg bg-[#F3F4F6] border border-[#E5E7EB]">
+                        <h3 className="text-sm font-medium text-[#6B7280] mb-1">ETA</h3>
+                        <p className="text-[#111827] flex items-center">
+                          <Clock className="mr-2 h-4 w-4 text-[#FFC107]" />
                           {currentBusData.eta}
                         </p>
                       </div>
-                      <div className="p-4 rounded-lg bg-[#E3D4D0]/10 border border-[#DABEB6]/20">
-                        <h3 className="text-sm font-medium text-[#7A8D9B] mb-1">Speed</h3>
-                        <p className="text-[#7A8D9B] flex items-center">
-                          <Navigation className="mr-2 h-4 w-4 text-[#DABEB6]" />
+                      <div className="p-4 rounded-lg bg-[#F3F4F6] border border-[#E5E7EB]">
+                        <h3 className="text-sm font-medium text-[#6B7280] mb-1">Speed</h3>
+                        <p className="text-[#111827] flex items-center">
+                          <Navigation className="mr-2 h-4 w-4 text-[#0056B6]" />
                           {currentBusData.speed}
                         </p>
                       </div>
                     </div>
 
-                    <div className="p-4 rounded-lg bg-[#E3D4D0]/10 border border-[#DABEB6]/20">
-                      <h3 className="text-sm font-medium text-[#7A8D9B] mb-1">Last Updated</h3>
-                      <p className="text-[#7A8D9B]">{currentBusData.lastUpdated}</p>
+                    <div className="p-4 rounded-lg bg-[#F3F4F6] border border-[#E5E7EB]">
+                      <h3 className="text-sm font-medium text-[#6B7280] mb-1">Last Updated</h3>
+                      <p className="text-[#111827]">{currentBusData.lastUpdated}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -224,10 +234,10 @@ const GPS = () => {
 
           <TabsContent value="history" className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="md:col-span-2 bg-white/10 backdrop-blur-xl shadow-lg border border-[#DABEB6]/20">
+              <Card className="md:col-span-2 bg-white/85 backdrop-blur-xl shadow-lg border border-[#E5E7EB]">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-[#7A8D9B]">
-                    <Calendar className="mr-2 h-5 w-5 text-[#DABEB6]" />
+                  <CardTitle className="flex items-center text-[#111827]">
+                    <Calendar className="mr-2 h-5 w-5 text-[#0056B6]" />
                     Trip History
                   </CardTitle>
                 </CardHeader>
@@ -235,28 +245,28 @@ const GPS = () => {
                   <div className="overflow-x-auto">
                     <Table>
                       <TableHeader>
-                        <TableRow className="border-[#DABEB6]/20">
-                          <TableHead className="text-[#7A8D9B]">Date</TableHead>
-                          <TableHead className="text-[#7A8D9B]">Morning Onboard</TableHead>
-                          <TableHead className="text-[#7A8D9B]">Morning Offboard</TableHead>
-                          <TableHead className="text-[#7A8D9B]">Evening Onboard</TableHead>
-                          <TableHead className="text-[#7A8D9B]">Evening Offboard</TableHead>
-                          <TableHead className="text-[#7A8D9B]">Status</TableHead>
+                        <TableRow className="border-[#E5E7EB]">
+                          <TableHead className="text-[#6B7280]">Date</TableHead>
+                          <TableHead className="text-[#6B7280]">Morning Onboard</TableHead>
+                          <TableHead className="text-[#6B7280]">Morning Offboard</TableHead>
+                          <TableHead className="text-[#6B7280]">Evening Onboard</TableHead>
+                          <TableHead className="text-[#6B7280]">Evening Offboard</TableHead>
+                          <TableHead className="text-[#6B7280]">Status</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {tripHistoryData.map((trip, index) => (
-                          <TableRow key={index} className="border-[#DABEB6]/20">
-                            <TableCell className="font-medium text-[#7A8D9B]">{formatDate(trip.date)}</TableCell>
-                            <TableCell className="text-[#7A8D9B]/80">{trip.morningOnboard || "-"}</TableCell>
-                            <TableCell className="text-[#7A8D9B]/80">{trip.morningOffboard || "-"}</TableCell>
-                            <TableCell className="text-[#7A8D9B]/80">{trip.eveningOnboard || "-"}</TableCell>
-                            <TableCell className="text-[#7A8D9B]/80">{trip.eveningOffboard || "-"}</TableCell>
+                          <TableRow key={index} className="border-[#E5E7EB]">
+                            <TableCell className="font-medium text-[#111827]">{formatDate(trip.date)}</TableCell>
+                            <TableCell className="text-[#6B7280]">{trip.morningOnboard || "-"}</TableCell>
+                            <TableCell className="text-[#6B7280]">{trip.morningOffboard || "-"}</TableCell>
+                            <TableCell className="text-[#6B7280]">{trip.eveningOnboard || "-"}</TableCell>
+                            <TableCell className="text-[#6B7280]">{trip.eveningOffboard || "-"}</TableCell>
                             <TableCell>
                               {trip.present ? (
-                                <Badge className="bg-[#E3D4D0]/30 text-[#7A8D9B] border-[#DABEB6]/30">Present</Badge>
+                                <Badge className="bg-[#34D399]/20 text-[#34D399] border-[#34D399]/30">Present</Badge>
                               ) : (
-                                <Badge variant="destructive" className="bg-red-100/30 text-red-500 border-red-300/30">Absent</Badge>
+                                <Badge variant="destructive" className="bg-[#EF4444]/20 text-[#EF4444] border-[#EF4444]/30">Absent</Badge>
                               )}
                             </TableCell>
                           </TableRow>
@@ -267,10 +277,10 @@ const GPS = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/10 backdrop-blur-xl shadow-lg border border-[#DABEB6]/20">
+              <Card className="bg-white/85 backdrop-blur-xl shadow-lg border border-[#E5E7EB]">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-[#7A8D9B]">
-                    <TrendingUp className="mr-2 h-5 w-5 text-[#DABEB6]" />
+                  <CardTitle className="flex items-center text-[#111827]">
+                    <TrendingUp className="mr-2 h-5 w-5 text-[#0056B6]" />
                     Attendance Analytics
                   </CardTitle>
                 </CardHeader>
@@ -280,7 +290,7 @@ const GPS = () => {
                       <div className="relative inline-flex items-center justify-center">
                         <svg className="w-32 h-32">
                           <circle
-                            className="text-[#E3D4D0]/20"
+                            className="text-[#F3F4F6]"
                             strokeWidth="8"
                             stroke="currentColor"
                             fill="transparent"
@@ -289,7 +299,7 @@ const GPS = () => {
                             cy="64"
                           />
                           <circle
-                            className="text-[#DABEB6]"
+                            className="text-[#34D399]"
                             strokeWidth="8"
                             strokeDasharray={`${presencePercentage * 3.65} 365`}
                             strokeLinecap="round"
@@ -300,22 +310,22 @@ const GPS = () => {
                             cy="64"
                           />
                         </svg>
-                        <span className="absolute text-2xl text-[#7A8D9B] font-bold">
+                        <span className="absolute text-2xl text-[#111827] font-bold">
                           {Math.round(presencePercentage)}%
                         </span>
                       </div>
-                      <p className="mt-2 text-[#7A8D9B]/70">7-Day Attendance</p>
+                      <p className="mt-2 text-[#6B7280]">7-Day Attendance</p>
                     </div>
 
                     <div>
-                      <h3 className="text-sm font-medium text-[#7A8D9B] mb-3">Daily Attendance</h3>
+                      <h3 className="text-sm font-medium text-[#6B7280] mb-3">Daily Attendance</h3>
                       <div className="grid grid-cols-7 gap-1">
                         {tripHistoryData.map((day, index) => (
                           <div key={index} className="flex flex-col items-center">
                             <div 
-                              className={`h-12 w-6 rounded ${day.present ? 'bg-[#E3D4D0]/40' : 'bg-red-200/40'}`}
+                              className={`h-12 w-6 rounded ${day.present ? 'bg-[#34D399]/40' : 'bg-[#EF4444]/40'}`}
                             />
-                            <span className="text-xs text-[#7A8D9B]/70 mt-1">
+                            <span className="text-xs text-[#6B7280] mt-1">
                               {new Date(day.date).toLocaleDateString('en-US', { weekday: 'short' }).charAt(0)}
                             </span>
                           </div>

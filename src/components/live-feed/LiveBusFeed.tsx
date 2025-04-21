@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Compass, MapPin, Clock, AlertCircle, Gauge, Video, Navigation } from 'lucide-react';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card';
+import {
+  Compass,
+  MapPin,
+  Clock,
+  AlertCircle,
+  Gauge,
+  Video,
+  Navigation,
+  Expand
+} from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 interface LocationData {
@@ -22,16 +36,14 @@ const LiveBusFeed: React.FC = () => {
     lastUpdated: new Date().toLocaleTimeString()
   });
 
-  // Simulating location updates
   useEffect(() => {
     const updateInterval = setInterval(() => {
-      // In a real app, this would fetch data from an API
       const speedVariation = Math.floor(Math.random() * 10) - 5; // -5 to +5
       const newSpeed = Math.max(0, Math.min(80, 45 + speedVariation));
-      
+
       const etaVariation = Math.floor(Math.random() * 3) - 1; // -1 to +1
       const newEta = Math.max(1, Math.min(15, 8 + etaVariation));
-      
+
       setLocationData(prev => ({
         ...prev,
         speed: `${newSpeed} km/h`,
@@ -54,18 +66,38 @@ const LiveBusFeed: React.FC = () => {
           LIVE
         </Badge>
       </CardHeader>
+
       <CardContent className="p-4">
         <div className="flex flex-col md:flex-row gap-6">
-          {/* Video Feed (can be replaced with a map in a real app) */}
-          <div className="md:w-3/5">
-            <div className="aspect-video bg-black rounded-lg flex items-center justify-center overflow-hidden border border-gray-200">
-              <iframe 
+          {/* Video Feed Section with Fullscreen */}
+          <div className="md:w-3/5 relative">
+          <div className="h-[30vh] md:h-[320px] bg-black rounded-lg overflow-hidden border border-gray-200 relative group">
+            <iframe
+                id="bus-video-frame"
                 src="http://192.168.1.49:8080/video"
-                className="w-full h-full"
+                className="w-full h-full object-cover"
                 title="Live Bus Feed"
                 allowFullScreen
               ></iframe>
+
+              {/* Fullscreen Button */}
+              <button
+                onClick={() => {
+                  const iframeContainer = document.getElementById('bus-video-frame')?.parentElement;
+                  if (iframeContainer) {
+                    if (!document.fullscreenElement) {
+                      iframeContainer.requestFullscreen();
+                    } else {
+                      document.exitFullscreen();
+                    }
+                  }
+                }}
+                className="absolute top-2 right-2 p-1 rounded bg-white/80 hover:bg-white shadow-md transition-opacity opacity-0 group-hover:opacity-100"
+              >
+                <Expand className="h-4 w-4 text-gray-700" />
+              </button>
             </div>
+
             <div className="grid grid-cols-2 gap-2 mt-2">
               <div className="p-2 rounded bg-gray-50">
                 <div className="text-xs text-gray-500">Bus Number</div>
@@ -77,7 +109,7 @@ const LiveBusFeed: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Location Information */}
           <div className="md:w-2/5 flex flex-col space-y-4">
             <div className="p-3 rounded-lg bg-gray-50">
@@ -96,7 +128,7 @@ const LiveBusFeed: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="p-3 rounded-lg bg-gray-50">
               <div className="flex items-center mb-1">
                 <Gauge className="h-4 w-4 text-blue-500 mr-2" />
@@ -104,7 +136,7 @@ const LiveBusFeed: React.FC = () => {
               </div>
               <div className="text-2xl font-bold">{locationData.speed}</div>
             </div>
-            
+
             <div className="p-3 rounded-lg bg-gray-50">
               <div className="flex items-center mb-1">
                 <MapPin className="h-4 w-4 text-blue-500 mr-2" />
@@ -112,7 +144,7 @@ const LiveBusFeed: React.FC = () => {
               </div>
               <div className="font-medium">{locationData.nextStop}</div>
             </div>
-            
+
             <div className="p-3 rounded-lg bg-gray-50">
               <div className="flex items-center mb-1">
                 <Clock className="h-4 w-4 text-blue-500 mr-2" />
@@ -122,6 +154,7 @@ const LiveBusFeed: React.FC = () => {
             </div>
           </div>
         </div>
+
         <div className="text-right text-xs text-gray-500 mt-4">
           Last updated: {locationData.lastUpdated}
         </div>
@@ -130,4 +163,4 @@ const LiveBusFeed: React.FC = () => {
   );
 };
 
-export default LiveBusFeed; 
+export default LiveBusFeed;

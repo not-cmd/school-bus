@@ -136,6 +136,7 @@ const LiveFeed: React.FC = () => {
                 allowFullScreen
               ></iframe>
             </div>
+            
             <div className="mt-4 bg-white p-4 rounded-lg">
               <h3 className="font-medium text-lg mb-2">
                 {fullscreenFeed === 'entry' ? 'Entry Camera (Bus Boarding)' : 'Exit Camera (Bus Off-boarding)'}
